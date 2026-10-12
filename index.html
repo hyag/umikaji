@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>うみかじ工務店 — 沖縄県那覇市の工務店</title>
+<meta name="description" content="信頼と技術で、理想の家へ。沖縄県那覇市のうみかじ工務店。地元密着・職人技術・アフターサポート。9:00〜18:00（日曜定休）">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="うみかじ工務店 — 沖縄県那覇市の工務店">
+<meta property="og:description" content="信頼と技術で、理想の家へ。">
+
+<style>
+/* ============================================================
+   Design tokens
+   ============================================================ */
+:root {
+  --accent:        #c17f3a;   /* 沖縄の土をイメージしたブラウン */
+  --accent-strong: #9a6020;
+  --accent-soft:   rgba(193, 127, 58, .10);
+
+  --bg:            #faf8f5;
+  --bg-elevated:   #ffffff;
+  --border:        #e5ddd0;
+  --text:          #1e1a14;
+  --text-muted:    #7a6e5f;
+
+  --danger:        #c0392b;
+  --radius:        14px;
+  --shadow:        0 1px 2px rgba(30, 26, 20, .04),
+                   0 8px 24px rgba(30, 26, 20, .06);
+  --maxw:          760px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent:        #d99a56;
+    --accent-strong: #eab87e;
+    --accent-soft:   rgba(217, 154, 86, .14);
+
+    --bg:            #16140f;
+    --bg-elevated:   #1f1c16;
+    --border:        #2e2a22;
+    --text:          #efeae1;
+    --text-muted:    #a2978a;
+
+    --danger:        #f08070;
+    --shadow:        0 1px 2px rgba(0, 0, 0, .3),
+                     0 8px 24px rgba(0, 0, 0, .25);
+  }
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI",
+               "Noto Sans JP", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.9;
+  letter-spacing: .02em;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20vh 0 auto 0;
+  height: 60vh;
+  background: radial-gradient(60% 60% at 50% 0%, var(--accent-soft), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrap {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 2.5rem, var(--maxw));
+  margin-inline: auto;
+}
+
+a { color: var(--accent); }
+
+/* ============================================================
+   Hero
+   ============================================================ */
+.hero {
+  padding: clamp(4rem, 14vw, 7rem) 0 clamp(2.5rem, 8vw, 4rem);
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 1.2rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 6vw, 2.9rem);
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: .02em;
+}
+
+.lead {
+  max-width: 32em;
+  margin: 1.2rem auto 0;
+  color: var(--text-muted);
+  font-size: clamp(.92rem, 3.2vw, 1rem);
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: .78rem 2.3rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: .9rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  transition: background .2s ease;
+}
+@media (hover: hover) {
+  .btn:hover { background: var(--accent-strong); }
+}
+
+.hero-meta {
+  margin: 1.8rem 0 0;
+  font-size: .84rem;
+  color: var(--text-muted);
+}
+.hero-meta a { text-decoration: none; font-weight: 700; }
+
+/* ============================================================
+   Sections
+   ============================================================ */
+section { padding-block: clamp(2.2rem, 7vw, 3.4rem); }
+
+.label {
+  margin: 0 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ============================================================
+   Cards（特徴・施工事例）
+   ============================================================ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  padding: 1.6rem 1.4rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+  transition: transform .25s ease, border-color .25s ease;
+}
+@media (hover: hover) {
+  .card:hover { transform: translateY(-3px); border-color: var(--accent); }
+}
+
+.card .icon {
+  width: 42px;
+  height: 42px;
+  margin-bottom: 1rem;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+  background: var(--accent-soft);
+}
+
+.card h3 {
+  margin: 0 0 .4rem;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.6;
+}
+.card p {
+  margin: 0;
+  font-size: .86rem;
+  line-height: 1.85;
+  color: var(--text-muted);
+}
+
+.card .tag {
+  display: inline-block;
+  margin-bottom: .7rem;
+  padding: .12rem .6rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+/* ============================================================
+   Contact form
+   ============================================================ */
+.form {
+  display: grid;
+  gap: 1.2rem;
+  padding: 1.8rem 1.6rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+}
+
+.field { display: grid; gap: .4rem; }
+
+.field label {
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  color: var(--text-muted);
+}
+
+.req {
+  margin-left: .4em;
+  padding: .05rem .45rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: .64rem;
+  letter-spacing: .06em;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: .65rem .85rem;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: .92rem;
+  line-height: 1.7;
+}
+
+.field textarea { min-height: 7.5rem; resize: vertical; }
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* 入力エラー */
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border-color: var(--danger);
+}
+
+.error {
+  margin: 0;
+  color: var(--danger);
+  font-size: .76rem;
+  line-height: 1.6;
+}
+.error[hidden] { display: none; }
+
+.form button {
+  padding: .8rem 0;
+  border: none;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-size: .92rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+@media (hover: hover) {
+  .form button:hover { background: var(--accent-strong); }
+}
+
+.form-note {
+  margin: 0;
+  font-size: .76rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* 送信後メッセージ */
+.result {
+  margin: 0;
+  padding: .9rem 1.1rem;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: .86rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.8;
+}
+.result[hidden] { display: none; }
+
+/* ============================================================
+   Footer
+   ============================================================ */
+footer {
+  margin-top: 2rem;
+  padding: 2.8rem 0 3.4rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: .76rem;
+}
+footer p { margin: 0; }
+footer p + p { margin-top: .4rem; }
+
+/* ============================================================
+   Scroll reveal
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .card, .btn, .form button { transition: none; }
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <p class="eyebrow">Umikaji Komuten</p>
+    <h1>信頼と技術で、<br>理想の家へ。</h1>
+    <p class="lead">沖縄県那覇市の工務店。新築・リフォーム・店舗工事まで、地域に根ざして承ります。</p>
+    <a class="btn" href="#contact">お問い合わせ</a>
+    <p class="hero-meta">
+      <a href="tel:098-000-0000">098-000-0000</a>　／　9:00〜18:00（日曜定休）
+    </p>
+  </header>
+
+  <main>
+    <!-- ============ 特徴 ============ -->
+    <section aria-labelledby="feature-label">
+      <h2 class="label" id="feature-label">Features</h2>
+      <div class="grid">
+        <article class="card reveal">
+          <div class="icon" aria-hidden="true">🏝️</div>
+          <h3>地元密着</h3>
+          <p>那覇を中心に施工してきました。塩害や台風など、沖縄特有の条件を前提に設計します。</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon" aria-hidden="true">🔨</div>
+          <h3>職人技術</h3>
+          <p>自社の大工が一貫して担当します。下請けに丸投げせず、工程と品質に責任を持ちます。</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon" aria-hidden="true">🛠️</div>
+          <h3>アフターサポート</h3>
+          <p>引き渡し後も定期点検を実施。小さな不具合もすぐに駆けつけられる距離感を大切にしています。</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ 施工事例 ============ -->
+    <section aria-labelledby="works-label">
+      <h2 class="label" id="works-label">Works</h2>
+      <div class="grid">
+        <article class="card reveal">
+          <span class="tag">新築</span>
+          <h3>風の抜ける平屋</h3>
+          <p>南北に風が通る間取りに。深い軒で日射を抑え、夏でもエアコンに頼りきらない住まいに仕上げました。</p>
+        </article>
+        <article class="card reveal">
+          <span class="tag">リフォーム</span>
+          <h3>築40年住宅の再生</h3>
+          <p>躯体を活かしたまま水まわりを一新。断熱と配管を更新し、暮らしやすさを大きく改善しました。</p>
+        </article>
+        <article class="card reveal">
+          <span class="tag">店舗</span>
+          <h3>海辺のカフェ併用住宅</h3>
+          <p>1階を店舗、2階を住居に。潮風に耐える外装材を選定し、メンテナンスの手間を抑えました。</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ お問い合わせ ============ -->
+    <section id="contact" aria-labelledby="contact-label">
+      <h2 class="label" id="contact-label">Contact</h2>
+      <form class="form reveal" id="contact-form" novalidate>
+
+        <div class="field">
+          <label for="f-name">お名前<span class="req">必須</span></label>
+          <input type="text" id="f-name" name="name" autocomplete="name"
+                 placeholder="比嘉 太郎" aria-describedby="e-name">
+          <p class="error" id="e-name" hidden></p>
+        </div>
+
+        <div class="field">
+          <label for="f-tel">電話番号<span class="req">必須</span></label>
+          <input type="tel" id="f-tel" name="tel" autocomplete="tel"
+                 placeholder="098-000-0000" aria-describedby="e-tel">
+          <p class="error" id="e-tel" hidden></p>
+        </div>
+
+        <div class="field">
+          <label for="f-email">メールアドレス<span class="req">必須</span></label>
+          <input type="email" id="f-email" name="email" autocomplete="email"
+                 placeholder="example@mail.com" aria-describedby="e-email">
+          <p class="error" id="e-email" hidden></p>
+        </div>
+
+        <div class="field">
+          <label for="f-message">お問い合わせ内容<span class="req">必須</span></label>
+          <textarea id="f-message" name="message"
+                    placeholder="ご相談内容をご記入ください。" aria-describedby="e-message"></textarea>
+          <p class="error" id="e-message" hidden></p>
+        </div>
+
+        <button type="submit">送信する</button>
+        <p class="result" id="form-result" hidden role="status"></p>
+        <p class="form-note">※ デモサイトのため、実際には送信されません。</p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>沖縄県那覇市　／　098-000-0000　／　9:00〜18:00（日曜定休）</p>
+    <p>&copy; 2026 うみかじ工務店</p>
+  </footer>
+
+</div>
+
+<script>
+/* ============================================================
+   お問い合わせフォーム（バリデーション／送信はしない）
+   ============================================================ */
+(function () {
+  var form = document.getElementById('contact-form');
+  var result = document.getElementById('form-result');
+  if (!form) return;
+
+  var rules = [
+    { id: 'f-name',    err: 'e-name',    label: 'お名前' },
+    { id: 'f-tel',     err: 'e-tel',     label: '電話番号',
+      // 数字・ハイフン・括弧・空白のみ、数字は10桁以上
+      test: function (v) { return /^[0-9\-()\s+]+$/.test(v) && v.replace(/\D/g, '').length >= 10; },
+      message: '電話番号の形式が正しくありません。' },
+    { id: 'f-email',   err: 'e-email',   label: 'メールアドレス',
+      test: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); },
+      message: 'メールアドレスの形式が正しくありません。' },
+    { id: 'f-message', err: 'e-message', label: 'お問い合わせ内容' }
+  ];
+
+  function setError(rule, msg) {
+    var input = document.getElementById(rule.id);
+    var box = document.getElementById(rule.err);
+    if (msg) {
+      input.setAttribute('aria-invalid', 'true');
+      box.textContent = msg;
+      box.hidden = false;
+    } else {
+      input.removeAttribute('aria-invalid');
+      box.textContent = '';
+      box.hidden = true;
+    }
+  }
+
+  function validate(rule) {
+    var v = document.getElementById(rule.id).value.trim();
+    if (!v) { setError(rule, rule.label + 'を入力してください。'); return false; }
+    if (rule.test && !rule.test(v)) { setError(rule, rule.message); return false; }
+    setError(rule, '');
+    return true;
+  }
+
+  // 一度エラーを出した項目は、入力しながら解除されるようにする
+  rules.forEach(function (rule) {
+    var input = document.getElementById(rule.id);
+    input.addEventListener('input', function () {
+      if (input.getAttribute('aria-invalid') === 'true') { validate(rule); }
+    });
+    input.addEventListener('blur', function () {
+      if (input.value.trim() !== '') { validate(rule); }
+    });
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();          // 送信先が無いため実際には送らない
+    result.hidden = true;
+
+    var firstInvalid = null;
+    rules.forEach(function (rule) {
+      if (!validate(rule) && !firstInvalid) { firstInvalid = rule.id; }
+    });
+
+    if (firstInvalid) {
+      document.getElementById(firstInvalid).focus();   // 最初のエラー項目へ移動
+      return;
+    }
+
+    result.textContent = '送信ありがとうございます。デモサイトのため実際には送信されません。お急ぎの場合は 098-000-0000 までご連絡ください。';
+    result.hidden = false;
+    form.reset();
+  });
+})();
+
+/* ---- スクロールで順にフェードイン ---- */
+(function () {
+  var items = document.querySelectorAll('.reveal');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduce || !('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('visible'); });
+    return;
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry, i) {
+      if (!entry.isIntersecting) return;
+      setTimeout(function () { entry.target.classList.add('visible'); }, i * 90);
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>
