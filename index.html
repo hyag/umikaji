@@ -144,6 +144,43 @@ a { color: var(--accent); }
 }
 .hero-meta a { text-decoration: none; font-weight: 700; }
 
+/* 全幅の画像ヒーロー（.wrap の外に置く） */
+.hero-image {
+  position: relative;
+  z-index: 1;
+  height: clamp(380px, 52vw, 500px);
+  padding: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+.hero-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+}
+.hero-image .hero-content {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 2.5rem, var(--maxw));
+  padding-bottom: clamp(1.6rem, 5vw, 2.6rem);
+  color: #fff;
+}
+.hero-image .eyebrow,
+.hero-image .lead,
+.hero-image .hero-meta { color: rgba(255,255,255,.85); }
+.hero-image .hero-meta a { color: #fff; }
+
 /* ============================================================
    Sections
    ============================================================ */
@@ -210,6 +247,16 @@ section { padding-block: clamp(2.2rem, 7vw, 3.4rem); }
   font-size: .86rem;
   line-height: 1.85;
   color: var(--text-muted);
+}
+
+/* 施工事例の写真：カードの padding を打ち消して上端いっぱいに広げる */
+.card-img {
+  display: block;
+  width: calc(100% + 2.8rem);
+  height: 220px;
+  margin: -1.6rem -1.4rem 1.2rem;
+  object-fit: cover;
+  border-radius: var(--radius) var(--radius) 0 0;
 }
 
 .card .tag {
@@ -362,10 +409,10 @@ footer p + p { margin-top: .4rem; }
 </head>
 
 <body>
-<div class="wrap">
-
-  <!-- ============ HERO ============ -->
-  <header class="hero">
+<!-- ============ HERO ============ -->
+<header class="hero hero-image">
+  <img src="images/hero.jpg" alt="" width="2000" height="800" fetchpriority="high">
+  <div class="hero-content">
     <p class="eyebrow">Umikaji Komuten</p>
     <h1>信頼と技術で、<br>理想の家へ。</h1>
     <p class="lead">沖縄県那覇市の工務店。新築・リフォーム・店舗工事まで、地域に根ざして承ります。</p>
@@ -373,7 +420,10 @@ footer p + p { margin-top: .4rem; }
     <p class="hero-meta">
       <a href="tel:098-000-0000">098-000-0000</a>　／　9:00〜18:00（日曜定休）
     </p>
-  </header>
+  </div>
+</header>
+
+<div class="wrap">
 
   <main>
     <!-- ============ 特徴 ============ -->
@@ -403,16 +453,19 @@ footer p + p { margin-top: .4rem; }
       <h2 class="label" id="works-label">Works</h2>
       <div class="grid">
         <article class="card reveal">
+          <img class="card-img" src="images/case1.jpg" alt="施工事例：風の抜ける平屋" width="1200" height="800" loading="lazy">
           <span class="tag">新築</span>
           <h3>風の抜ける平屋</h3>
           <p>南北に風が通る間取りに。深い軒で日射を抑え、夏でもエアコンに頼りきらない住まいに仕上げました。</p>
         </article>
         <article class="card reveal">
+          <img class="card-img" src="images/case2.jpg" alt="施工事例：築40年住宅の再生" width="1200" height="800" loading="lazy">
           <span class="tag">リフォーム</span>
           <h3>築40年住宅の再生</h3>
           <p>躯体を活かしたまま水まわりを一新。断熱と配管を更新し、暮らしやすさを大きく改善しました。</p>
         </article>
         <article class="card reveal">
+          <img class="card-img" src="images/case3.jpg" alt="施工事例：海辺のカフェ併用住宅" width="1200" height="800" loading="lazy">
           <span class="tag">店舗</span>
           <h3>海辺のカフェ併用住宅</h3>
           <p>1階を店舗、2階を住居に。潮風に耐える外装材を選定し、メンテナンスの手間を抑えました。</p>
